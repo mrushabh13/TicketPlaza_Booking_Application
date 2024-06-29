@@ -1,0 +1,5 @@
+com\ticketplaza\microservice\booking\dto\TicketBookingDto.class
+com\ticketplaza\microservice\booking\config\WebClientConfig.class
+com\ticketplaza\microservice\booking\TicketBookingApplication.class
+com\ticketplaza\microservice\booking\controller\BookingController.class
+com\ticketplaza\microservice\booking\entity\TicketBooking.class
