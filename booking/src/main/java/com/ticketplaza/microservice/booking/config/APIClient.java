@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.ticketplaza.microservice.booking.dto.EventDto;
 
 
-@FeignClient(url = "http://localhost:8001",value="EVENT-SERVICE")
+@FeignClient(name="EVENT-SERVICE")
 public interface APIClient {
 
 	@GetMapping("/api/eventmanagement/eventDetails/{id}")

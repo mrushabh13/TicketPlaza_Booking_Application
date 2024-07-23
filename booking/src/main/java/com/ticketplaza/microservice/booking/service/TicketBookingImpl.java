@@ -25,13 +25,13 @@ public class TicketBookingImpl implements TicketBookingService {
 		ticketBooking.setCustomerEmail(ticketBookingDto.getCustomerName());
 		ticketBooking.setCustomerName(ticketBookingDto.getCustomerName());
 		ticketBooking.setNumberOfTickets(ticketBookingDto.getNumberOfTickets());
-		ticketBookingRepository.save(ticketBooking);
+		
 
 		EventDto eventDto = apiClient.getEventDetails(ticketBookingDto.getEventId());
 
 		eventDto.setBookedSeats(eventDto.getBookedSeats() + ticketBookingDto.getNumberOfTickets());
 		apiClient.updateEventDetails(ticketBooking.getEventId(), eventDto);
-
+		ticketBookingRepository.save(ticketBooking);
 		return ticketBookingDto;
 
 	}
