@@ -24,15 +24,14 @@ public class EventManagementServiceImpl implements EventManagementService {
 	@Override
 	public EventDto createEvent(EventDto eventDto) {
 		Event event = convertToEntity(eventDto);
-
 		Event savedEvent = eventManagementRepository.save(event);
 		return convertToDto(savedEvent);
-		// TODO Auto-generated method stub
 
 	}
 
 	private Event convertToEntity(EventDto eventDto) {
 		Event event = new Event();
+		event.setId(eventDto.getId());
 		event.setStartDate(eventDto.getStartDate());
 		event.setEndDate(eventDto.getEndDate());
 		event.setEventName(eventDto.getEventName());
