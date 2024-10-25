@@ -1,15 +1,9 @@
 # General
 HELP.md
-/target/
+.factorypath
 
 # Target and build directories
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 # Binary files
 *.jar
