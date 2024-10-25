@@ -1,5 +1,6 @@
 # General
 HELP.md
+/target/
 
 # Target and build directories
 target/
