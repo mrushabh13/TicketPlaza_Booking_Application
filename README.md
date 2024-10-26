@@ -37,6 +37,8 @@ Step 3: Start Event Management Service
 Step 4: Start Booking Service
 Step 5: Start the API Gateway
 
+To setup the SQL database in your local you need to create a seperate .properties file replicating the one that is already present in the github repo. The naming convention shouldbe followed just change the name to your name. And in the services change the spring.profiles.active=TO-YOUR-NAME .You will need to make the changes as per you system the username and password. Also create the schema event_details and ticket_booking in the sql database. These .properties files will need to be commited to the following repo https://github.com/mrushabh13/config-server-repo
+
 Technologies Used
 Java (Spring Boot)
 Eureka for service discovery
