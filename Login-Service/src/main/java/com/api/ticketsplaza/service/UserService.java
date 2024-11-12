@@ -15,6 +15,7 @@ import com.api.ticketsplaza.exception.TicketPlazaErrorCodes;
 import com.api.ticketsplaza.model.LoginRequest;
 import com.api.ticketsplaza.model.User;
 import com.api.ticketsplaza.repository.UserDAO;
+import com.api.ticketsplaza.utility.JWTUtil;
 import com.api.ticketsplaza.utility.Response;
 import com.api.ticketsplaza.utility.StringUtility;
 
@@ -23,12 +24,14 @@ public class UserService implements UserServiceInterface {
 
 	private final UserDAO userDAO;
 	private final PasswordEncoder passwordEncoder;
+	private final JWTUtil jwtUtil;
 
 
 	@Autowired
-    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
+    public UserService(UserDAO userDAO, PasswordEncoder passwordEncoder, JWTUtil jwtUtil) {
         this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
+		this.jwtUtil = jwtUtil;
     }
 	
 	private Pattern emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$");
@@ -135,7 +138,8 @@ public class UserService implements UserServiceInterface {
 		
 		String enteredPassword = loginRequest.getPassword();
 		if (user != null && passwordEncoder.matches(enteredPassword, user.get(0).getPassword())) {
-			return ResponseEntity.ok(new Response("Success","Login Successful"));
+			String jwtToken=jwtUtil.generateToken(loginRequest.getEmail());
+			return ResponseEntity.ok(new Response("Success",jwtToken));
 		} else {
 			throw new InvalidInputException(TicketPlazaErrorCodes.INVALID_CREDENTIALS,
 					"Please check your Email Id or Password, and try again");
